@@ -5,7 +5,6 @@ import SearchForm from '@/components/SearchForm'
 import { getResources, getResourcesPlaylist } from '@/sanity/actions'
 import React from 'react'
 
-const revalidate = "";
 
 interface PageProps {
   searchParams: { [key: string]: string | undefined }
@@ -19,7 +18,6 @@ const Page = async ({ searchParams }: PageProps) => {
   }) as Resource[]
 
   const resourcePlaylist = await getResourcesPlaylist() as ResourcePlaylist[]
-  console.log(resourcePlaylist);
 
 
   return (
