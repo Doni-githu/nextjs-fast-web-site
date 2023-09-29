@@ -12,7 +12,7 @@ const Header = ({
     if (query && category) {
         return (
             <h1 className='heading3 self-start' style={{ color: '#D0DFFF' }}>
-                Search results for "{query}" in <span className="capitalize">{category}</span>
+                Search results for "{query.toString()}" in <span className="capitalize">{category}</span>
             </h1>
         )
     }
@@ -20,7 +20,7 @@ const Header = ({
     if (query) {
         return (
             <h1 className='heading3 self-start' style={{ color: '#D0DFFF' }}>
-                Search results for "{query}"
+                Search results for "{query.toString()}"
             </h1>
         )
     }
