@@ -7,30 +7,31 @@ import { useState } from 'react'
 const links = ['all', 'Next 13', 'frontend', 'backend', 'fullstack']
 
 const Filters = () => {
-    const [selected, setSelected] = useState<string>("all")
-    const searchParams = useSearchParams()
-    const router = useRouter()
-    
-    
+    const [active, setActive] = useState('');
+    const searchParms = useSearchParams();
+    const router = useRouter();
+
     const handleFilter = (link: string) => {
-        let newUrl = "";
-        if (selected === link) {
-            setSelected('')
+        let newUrl = '';
+
+        if (active === link) {
+            setActive('');
+
             newUrl = formUrlQuery({
-                params: searchParams.toString(),
-                key: 'category',
+                params: searchParms.toString(),
                 keysToRemove: ['category'],
             })
         } else {
-            setSelected(link)
+            setActive(link);
+
             newUrl = formUrlQuery({
-                params: searchParams.toString(),
+                params: searchParms.toString(),
                 key: 'category',
-                value: link.toLowerCase()
+                value: link.toLowerCase(),
             })
         }
 
-        router.push(newUrl, {scroll: false})        
+        router.push(newUrl, { scroll: false });
     }
 
     return (
@@ -39,7 +40,7 @@ const Filters = () => {
                 <button
                     key={link}
                     style={{ borderRadius: '0.25rem' }}
-                    className={`whitespace-nowrap px-8 py-2.5 capitalize ${selected === link ? "gradient_blue-purple" : ""}`}
+                    className={`whitespace-nowrap px-8 py-2.5 capitalize ${active === link ? "gradient_blue-purple" : ""}`}
                     onClick={() => {
                         handleFilter(link)
                     }}

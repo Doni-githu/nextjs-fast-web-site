@@ -14,7 +14,7 @@ interface ResourceCardProps {
 const ResourceCard = ({ resource }: ResourceCardProps) => {
   return (
     <Card className="w-full max-w-fit border-0 !bg-transparent sm:max-w-[356px]">
-      <Link href={`/resource/${resource._id}`}>
+      <Link href={resource.downloadLink} target="_blank">
         <CardHeader>
           <div className="mb-3">
             <Image
@@ -40,7 +40,7 @@ const ResourceCard = ({ resource }: ResourceCardProps) => {
         </div>
         <Link
           className="text-gradient_purple-blue text-[16px] font-medium leading-[22.4px] gap-2 flex items-center justify-center"
-          href={`/resource/${resource._id}`}>
+          href={resource.downloadLink} target="_blank">
           Download Now
           <Image
             src={"/arrow-blue.svg"}

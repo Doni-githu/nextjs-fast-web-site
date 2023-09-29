@@ -7,7 +7,7 @@ interface HeaderProps {
 }
 
 const Header = ({
-    title, category, query
+    category, query
 }: HeaderProps) => {
     if (query && category) {
         return (

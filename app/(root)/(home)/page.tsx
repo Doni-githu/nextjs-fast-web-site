@@ -3,7 +3,6 @@ import Header from '@/components/Header'
 import ResourceCard from '@/components/ResourceCard'
 import SearchForm from '@/components/SearchForm'
 import { getResources, getResourcesPlaylist } from '@/sanity/actions'
-import Head from 'next/head'
 import React from 'react'
 
 const revalidate = "";
@@ -21,7 +20,7 @@ const Page = async ({ searchParams }: PageProps) => {
 
   const resourcePlaylist = await getResourcesPlaylist() as ResourcePlaylist[]
   console.log(resourcePlaylist);
-  
+
 
   return (
     <main className='flex-center sm:p-16 xs:p-8 px-6 py-12 mx-auto w-full max-w-screen-2xl flex-col'>
@@ -61,10 +60,30 @@ const Page = async ({ searchParams }: PageProps) => {
         </section>
       )}
 
-      <section>
 
-      </section>
 
+      {resourcePlaylist.map((item) => (
+        <section
+          className='flex items-center justify-center mt-6 w-full flex-col sm:mt-20'
+          key={item._id}>
+          <h1 className='heading3 self-start' style={{ color: '#D0DFFF' }}>{item.title}</h1>
+
+          <div className='mt-12 flex w-full flex-wrap justify-center gap-16 sm:justify-start'>
+            {item.resources?.length > 0 ? (
+              item.resources.map((resource) => (
+                <ResourceCard
+                  key={resource._id}
+                  resource={resource}
+                />
+              ))
+            ) : (
+              <p className='text-[16px] font-normal leading-[20.8px]' style={{ color: '#A3B3BC' }}>
+                No resources found
+              </p>
+            )}
+          </div>
+        </section>
+      ))}
     </main>
   )
 }
